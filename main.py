@@ -9,6 +9,11 @@ import os
 TOKEN = "8643428228:AAGEx_JCMnO6Ojf-Ooj5dHwl--eny8xBjXI"
 CHAT_ID = 8976496780
 YOUTUBE_API_KEY = "AIzaSyCL25DaM6AUx9-J1Qr889AcM3nXigRAVNI"
+TWITTER_USERNAME = os.environ.get("TWITTER_USERNAME")
+TWITTER_PASSWORD = os.environ.get("TWITTER_PASSWORD")
+TWITTER_EMAIL = os.environ.get("TWITTER_EMAIL")
+TWITTER_EMAIL_PASSWORD = os.environ.get("TWITTER_EMAIL_PASSWORD")
+TWITTER_COOKIES = os.environ.get("TWITTER_COOKIES")
 
 REDDIT_FEEDS = [
     "https://www.reddit.com/r/BrawlStars/new/.rss",

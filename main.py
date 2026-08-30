@@ -4,6 +4,7 @@ import requests
 from telegram import Bot
 from twscrape import API
 import asyncio
+import os
 
 TOKEN = "8643428228:AAGEx_JCMnO6Ojf-Ooj5dHwl--eny8xBjXI"
 CHAT_ID = 8976496780
@@ -95,11 +96,23 @@ def check_twitter(bot, loop):
             message = f"Twitter: {text}\n{link}"
             loop.run_until_complete(send_message(bot, message))
             print("Надіслано (Twitter):", text[:50])
+async def setup_twitter():
+     await twitter_api.pool.delete_accounts(TWITTER_USERNAME)
+     await twitter_api.pool.add_account(
+        TWITTER_USERNAME,
+        TWITTER_PASSWORD,
+        TWITTER_EMAIL,
+        TWITTER_EMAIL_PASSWORD,
+        cookies=TWITTER_COOKIES
+    )
 def main():
     bot = Bot(token=TOKEN)
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
+    print("Підключення Twitter акаунту...")
+    loop.run_until_complete(setup_twitter())
+    
     print("Перше сканування (без відправки старих постів)...")
     for url in REDDIT_FEEDS:
         feed = feedparser.parse(url)
